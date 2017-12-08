@@ -30,7 +30,6 @@ with open (dateiname, 'w') as out:
   url = []
   r = requests.get('http://www.insecam.org/en/bycountry/DE/?page=1', headers={'user-agent': 'mozilla'}) #Seitenannzahl bestimmen
   seiten = r.text.split('pagenavigator("?page=", ')[1].split(",")[0]
-  seiten = 2
   for i in tqdm(range(1, int(seiten) + 1)): #Webcamannzahl und Webcamurl bestimmem
     r = requests.get('http://www.insecam.org/en/bycountry/DE/?page=' + str(i), headers={'user-agent': 'mozilla'})
     for x in range (0, r.text.count('/en/view/')):
