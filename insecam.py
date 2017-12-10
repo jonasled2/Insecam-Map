@@ -27,7 +27,7 @@ with open (dateiname, 'w') as out:
   except:
     os.system("clear")
   
-  out.write('   <!DOCTYPE html>\n   <html>\n   <head>\n     <meta http-equiv="content-type" content="text/html; charset=ANSI" />\n     <title>Insecam Map</title>\n     <script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"\n      type="text/javascript"></script>\n   </head>\n   <body>\n     <div id="map" style="width: 1340px; height: 640px;"></div>\n\n     <script type="text/javascript">\n       var locations = [')
+  out.write('   <!DOCTYPE html>\n   <html>\n   <head>\n     <meta http-equiv="content-type" content="text/html; charset=ANSI" />\n     <title>Insecam Map</title>\n	 <style>\n      /* Always set the map height explicitly to define the size of the div\n       * element that contains the map. */\n      #map {\n        height: 100%;\n      }\n      /* Optional: Makes the sample page fill the window. */\n      html, body {\n        height: 100%;\n        margin: 0;\n        padding: 0;\n      }\n    </style>\n   </head>\n   <body>\n     <div id="map"div>\n		<script src="https://maps.googleapis.com/maps/api/js?key=' + str(api_key) + '"\n      type="text/javascript"></script>\n     <script type="text/javascript">\n       var locations = [\n')
   url = []
   r = requests.get('http://www.insecam.org/en/bycountry/' + str(land) +'/?page=1', headers={'user-agent': 'mozilla'}) #Seitenannzahl bestimmen
   seiten = r.text.split('pagenavigator("?page=", ')[1].split(",")[0]
