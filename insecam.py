@@ -8,7 +8,6 @@ from time import *
 
 #Variablen:
 land = ["DE", "US", "FR", "JP", "IT", "TR", "GB", "NL", "KR", "RU", "CZ", "TW", "CA", "IL", "AT", "IN", "CH", "ES", "SE", "PL", "NO", "RO", "BR", "AU", "ID", "VN", "UA", "MX", "EG", "AR", "IR", "TH", "DK", "SK", "BG", "FI", "IE", "HU", "HK", "CN", "CO", "CL", "GR", "ZA", "BE", "PT", "RS", "IS", "PK", "NZ", "LV", "SG", "EE", "AE", "FO", "PS", "LT", "MY", "SI", "KW", "SV", "TN", "PA", "GE", "PH", "TT", "CR", "MD", "KE", "KH", "DO", "HR", "EC", "LU", "MT", "VE", "CY", "NI", "BD", "KZ", "NP", "RE", "MN", "MA", "GT", "SA", "BY", "JO", "PY", "PE", "AM", "CW", "HN", "AL", "BO", "BS", "NC", "AG", "UY", "LI", "SR", "BA", "JE", "GY", "PR", "GU", "QA", "LB", "GP", "BQ", "BH", "BN", "AZ", "AW", "BJ", "MO", "TG", "GL", "AD", "ME", "MC", "MQ", "JM", "HT", "PF"]
-api_key = ''
 ftp_server = ''
 ftp_username = ''
 ftp_password = ''
