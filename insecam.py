@@ -13,7 +13,7 @@ ftp_server = ''
 ftp_username = ''
 ftp_password = ''
 speicherort = ''
-dateiname = ''
+dateiname = 'Marker.js'
 
 t1 = clock()
 
