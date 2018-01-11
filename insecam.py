@@ -8,10 +8,7 @@ from time import *
 
 #Variablen:
 land = ["DE", "US", "FR", "JP", "IT", "TR", "GB", "NL", "KR", "RU", "CZ", "TW", "CA", "IL", "AT", "IN", "CH", "ES", "SE", "PL", "NO", "RO", "BR", "AU", "ID", "VN", "UA", "MX", "EG", "AR", "IR", "TH", "DK", "SK", "BG", "FI", "IE", "HU", "HK", "CN", "CO", "CL", "GR", "ZA", "BE", "PT", "RS", "IS", "PK", "NZ", "LV", "SG", "EE", "AE", "FO", "PS", "LT", "MY", "SI", "KW", "SV", "TN", "PA", "GE", "PH", "TT", "CR", "MD", "KE", "KH", "DO", "HR", "EC", "LU", "MT", "VE", "CY", "NI", "BD", "KZ", "NP", "RE", "MN", "MA", "GT", "SA", "BY", "JO", "PY", "PE", "AM", "CW", "HN", "AL", "BO", "BS", "NC", "AG", "UY", "LI", "SR", "BA", "JE", "GY", "PR", "GU", "QA", "LB", "GP", "BQ", "BH", "BN", "AZ", "AW", "BJ", "MO", "TG", "GL", "AD", "ME", "MC", "MQ", "JM", "HT", "PF"]
-ftp_server = ''
-ftp_username = ''
-ftp_password = ''
-speicherort = ''
+speicherort = '/var/www/html/'
 dateiname = 'Marker.js'
 
 t1 = clock()
@@ -26,19 +23,22 @@ with open (dateiname, 'w') as out:
   
   out.write('var locations = [')
   for y in range (0, len(land)):
-    try: #Befehlszeile löschen
+    try: #Befehlszeile lÃ¶schen
       s = sys.winver
       os.system("cls")
     except:
       os.system("clear")
-    print "Scanne Land Nr " + str(y + 1) + " von " + str(len(land)) + " Ländern.\nAktuelles Land ist " + str(land[y])
+    print "Scanne Land Nr " + str(y + 1) + " von " + str(len(land)) + " LÃ¤ndern.\nAktuelles Land ist " + str(land[y])
     lat = []
     lon = []
     city = []
     stream = []
     url = []
     r = requests.get('http://www.insecam.org/en/bycountry/' + str(land[y]) +'/?page=1', headers={'user-agent': 'mozilla'}) #Seitenannzahl bestimmen
-    seiten = r.text.split('pagenavigator("?page=", ')[1].split(",")[0]
+    try:
+      seiten = r.text.split('pagenavigator("?page=", ')[1].split(",")[0]
+    except:
+      seiten = 0
     for i in tqdm(range(1, int(seiten) + 1)): #Webcamannzahl und Webcamurl bestimmem
       r = requests.get('http://www.insecam.org/en/bycountry/' + str(land[y]) +'/?page=' + str(i), headers={'user-agent': 'mozilla'})
       for x in range (0, r.text.count('/en/view/')):
@@ -58,10 +58,7 @@ with open (dateiname, 'w') as out:
   out.seek(-1, 2)
   out.write("];")
   out.close()
-ftp = ftplib.FTP(ftp_server) #fertige js Datei über ftp hochladen
-ftp.login(ftp_username, ftp_password)
-ftp.cwd(speicherort) 
-upload(ftp, dateiname)
-print "upload auf FTP Server abgeschlossen."
+os.system("sudo mv " + dateiname + " " + speicherort)
 t2 = clock()
+dt = t2 - t1
 print 'Zeit zum Erzeugen: '+str(dt)+'s'
